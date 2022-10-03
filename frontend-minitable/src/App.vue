@@ -114,6 +114,7 @@ export default {
     calculate() {
       this.request = []
       this.cells.forEach((value, key) => this.request.push({address: key, value: value}))
+      console.log(process.env.API_ENDPOINT)
       RestService.calculateCells(this.request)
           .then((response) => {
                 this.error_message = null
