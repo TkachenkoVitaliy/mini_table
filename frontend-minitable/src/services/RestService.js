@@ -2,7 +2,7 @@ import {Axios} from "axios";
 
 class RestService {
     calculateCells(data) {
-        return axios.post('http://backend:8081/cells', data)
+        return axios.post('http://176.124.192.7:8081/cells', data)
     }
 }
 
