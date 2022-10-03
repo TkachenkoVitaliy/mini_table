@@ -5,23 +5,23 @@ services:
       context: ./backend-minitable
       target:  backendApp
     image: tkachenkovitaliy/minitable-backend
-    container_name: minitable-backend
+    container_name: backend
     ports:
       - 8081:8081
-    networks:
-      - minitable
+#    networks:
+#      - minitable
 
   front:
     build: ./frontend-minitable
     image: tkachenkovitaliy/minitable-frontend
-    container_name: minitable-frontend
+    container_name: frontend
     ports:
       - 8080:8080
     depends_on:
       - backend
-    networks:
-      - minitable
+#    networks:
+#      - minitable
 
-networks:
-  minitable:
-    driver: bridge
+#networks:
+#  minitable:
+#    driver: bridge
