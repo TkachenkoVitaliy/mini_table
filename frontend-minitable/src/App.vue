@@ -125,6 +125,9 @@ export default {
                 })
               },
               (error) => {
+                console.log(error.response.data)
+                let address = error.response.data.cellAddress
+                this.$refs[address].value = "ОШИБКА"
                 this.error_message = error.response.data.message
               }
           )

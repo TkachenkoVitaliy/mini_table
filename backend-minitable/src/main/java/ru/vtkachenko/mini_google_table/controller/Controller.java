@@ -13,10 +13,7 @@ import ru.vtkachenko.mini_google_table.model.Error;
 import ru.vtkachenko.mini_google_table.model.ResponseData;
 import ru.vtkachenko.mini_google_table.service.ExpressionParser;
 
-import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -39,7 +36,8 @@ public class Controller {
         } catch (ExpressionException e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
-            return new ResponseEntity<>(new Error(400, e.getMessage()), HttpStatus.BAD_REQUEST);
+            System.out.println(e.cellAddress);
+            return new ResponseEntity<>(new Error(400, e.getMessage(), e.cellAddress), HttpStatus.BAD_REQUEST);
         }
 
     }

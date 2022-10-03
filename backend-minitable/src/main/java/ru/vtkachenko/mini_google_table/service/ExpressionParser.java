@@ -41,9 +41,15 @@ public class ExpressionParser {
         String value = cell.getValue();
         if(value.startsWith("=") && value.length() > 2) {
             String valueWithOutEqualSymbol = value.substring(1);
-            BigDecimal result = calculate(valueWithOutEqualSymbol);
-            cell.setValue(result.toString());
-            calculatedCells.add(cell);
+            try {
+                BigDecimal result = calculate(valueWithOutEqualSymbol);
+                cell.setValue(result.toString());
+                calculatedCells.add(cell);
+            } catch (ExpressionException e) {
+                e.cellAddress = cell.getAddress();
+                throw e;
+            }
+
         }
         if(value.equals("")) cell.setValue("0");
         return cell;
