@@ -31,8 +31,6 @@ export default {
       this.user_value = this.value.toUpperCase()
       if(this.calculated_value === '') {
         this.value = this.user_value
-      } else {
-        this.value = this.calculated_value
       }
       this.isActive = false
       if(this.user_value !=='') {
