@@ -6,9 +6,4 @@ public class ExpressionException extends RuntimeException{
     public ExpressionException(String message) {
         super(message);
     }
-
-    public ExpressionException(String message, String cellAddress) {
-        super(message);
-        this.cellAddress = cellAddress;
-    }
 }

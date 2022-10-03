@@ -1,7 +1,5 @@
 package ru.vtkachenko.mini_google_table.model;
 
-import ru.vtkachenko.mini_google_table.service.model.CellType;
-
 public class Cell {
     private String address;
     private String value;

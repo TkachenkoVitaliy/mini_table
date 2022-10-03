@@ -113,8 +113,14 @@ export default {
   methods: {
     calculate() {
       this.request = []
-      this.cells.forEach((value, key) => this.request.push({address: key, value: value}))
-      console.log(process.env.API_ENDPOINT)
+      let cells = this.$refs
+      for(let key in cells) {
+        const cell = cells[key]
+        if(cell.user_value !== "") {
+          this.request.push({address: cell.address, value: cell.user_value})
+        }
+      }
+
       RestService.calculateCells(this.request)
           .then((response) => {
                 this.error_message = null
@@ -126,7 +132,6 @@ export default {
                 })
               },
               (error) => {
-                console.log(error.response.data)
                 let address = error.response.data.cellAddress
                 this.$refs[address].value = "ОШИБКА"
                 this.error_message = error.response.data.message

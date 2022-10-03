@@ -28,15 +28,11 @@ public class Controller {
 
     @PostMapping("/cells")
     public ResponseEntity<?> calculateCells(@RequestBody List<Cell> data) {
-        System.out.println("Start");
-        System.out.println(data);
         try {
             ResponseData responseData = new ResponseData(parser.calculateCells(data));
             return ResponseEntity.status(200).body(responseData);
         } catch (ExpressionException e) {
             e.printStackTrace();
-            System.out.println(e.getMessage());
-            System.out.println(e.cellAddress);
             return new ResponseEntity<>(new Error(400, e.getMessage(), e.cellAddress), HttpStatus.BAD_REQUEST);
         }
 

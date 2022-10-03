@@ -9,7 +9,6 @@ public class ElementBuffer {
     private List<Element> elements;
 
     public ElementBuffer(List<Element> elements) {
-        System.out.println(elements); //todo remove
         this.elements = elements;
     }
 

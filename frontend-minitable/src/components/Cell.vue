@@ -21,6 +21,9 @@ export default {
   },
   methods: {
     removeFocus() {
+      if(this.value !=='') {
+        this.$parent.cells.set(this.address, this.value)
+      }
       this.$el.blur()
     },
     showUserValue() {
@@ -29,13 +32,8 @@ export default {
     },
     setValues() {
       this.user_value = this.value.toUpperCase()
-      if(this.calculated_value === '') {
-        this.value = this.user_value
-      }
+      this.value = this.user_value
       this.isActive = false
-      if(this.user_value !=='') {
-        this.$parent.cells.set(this.address, this.user_value)
-      }
     },
     getUpdatedValue(data) {
       this.calculated_value = data

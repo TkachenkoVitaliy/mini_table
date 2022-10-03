@@ -29,8 +29,8 @@ public class ExpressionParser {
 
     public List<Cell> calculateCells(List<Cell> input) throws ExpressionException {
         data = input;
-        for(Cell cell : data) {
-            if(!calculatedCells.contains(cell)) {
+        for (Cell cell : data) {
+            if (!calculatedCells.contains(cell)) {
                 calculateCell(cell);
             }
         }
@@ -39,7 +39,7 @@ public class ExpressionParser {
 
     private Cell calculateCell(Cell cell) throws ExpressionException {
         String value = cell.getValue();
-        if(value.startsWith("=") && value.length() > 2) {
+        if (value.startsWith("=") && value.length() > 2) {
             String valueWithOutEqualSymbol = value.substring(1);
             try {
                 BigDecimal result = calculate(valueWithOutEqualSymbol);
@@ -51,12 +51,12 @@ public class ExpressionParser {
             }
 
         }
-        if(value.equals("")) cell.setValue("0");
+        if (value.equals("")) cell.setValue("0");
         return cell;
     }
 
     public BigDecimal calculate(String expression) throws ExpressionException {
-        if(expression.startsWith("=")) expression = expression.substring(1);
+        if (expression.startsWith("=")) expression = expression.substring(1);
         ElementBuffer elements = new ElementBuffer(analyze(expression));
         return plusMinus(elements);
     }
@@ -130,7 +130,7 @@ public class ExpressionParser {
             case LEFT_BRACKET:
                 BigDecimal value = plusMinus(elements);
                 element = elements.next();
-                if(element.getType() != ElementType.RIGHT_BRACKET) {
+                if (element.getType() != ElementType.RIGHT_BRACKET) {
                     throw new ExpressionException("Unexpected token: " + element.getValue());
                 }
                 return value;
@@ -171,30 +171,30 @@ public class ExpressionParser {
                     pos++;
                     continue;
                 default:
-                    if(c >= '0' && c <= '9' || c == '.') {
+                    if (c >= '0' && c <= '9' || c == '.') {
                         StringBuilder sb = new StringBuilder();
                         do {
                             sb.append(c);
                             pos++;
-                            if(pos >= expression.length()) {
+                            if (pos >= expression.length()) {
                                 break;
                             }
                             c = expression.charAt(pos);
                         } while (c >= '0' && c <= '9' || c == '.');
                         String value = sb.toString();
-                        if(value.charAt(0) == '.' || value.charAt(value.length()-1) == '.') {
+                        if (value.charAt(0) == '.' || value.charAt(value.length() - 1) == '.') {
                             throw new ExpressionException(value + " - isn't correct numeric value");
                         }
                         elements.add(new Element(ElementType.NUMBER, value));
                     } else {
-                        if (c!= ' ') {
+                        if (c != ' ') {
                             if (c >= 'A' && c < ('A' + columns)) {
                                 StringBuilder sb = new StringBuilder();
                                 sb.append(c);
                                 pos++;
                                 if (pos < expression.length()) {
                                     c = expression.charAt(pos);
-                                    if(c >= '1' && c < ('1' + rows)) {
+                                    if (c >= '1' && c < ('1' + rows)) {
                                         sb.append(c);
                                         pos++;
                                         elements.add(new Element(ElementType.REFERENCE, sb.toString()));
