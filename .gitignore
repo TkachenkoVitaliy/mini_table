@@ -1,0 +1,14 @@
+frontend-minitable/.DS_Store
+frontend-minitable/node_modules
+frontend-minitable/dist
+frontend-minitable/.idea
+
+.env.local
+.env.*.local
+npm-debug.log*
+
+backend-minitable/target/
+backend-minitable/.idea/
+backend-minitable/.DS_Store
+.DS_Store
+.idea

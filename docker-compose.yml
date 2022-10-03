@@ -1,0 +1,27 @@
+version: '3.6'
+services:
+  backend:
+    build:
+      context: ./backend-minitable
+      target:  backendApp
+    image: tkachenkovitaliy/minitable-backend
+    container_name: minitable-backed
+    ports:
+      - 8081:8081
+    networks:
+      - minitable
+
+  front:
+    build: ./frontend-minitable
+    image: tkachenkovitaliy/minitable-frontend
+    container_name: minitable-frontend
+    ports:
+      - 8080:8080
+    depends_on:
+      - backend
+    networks:
+      - minitable
+
+networks:
+  minitable:
+    driver: bridge
