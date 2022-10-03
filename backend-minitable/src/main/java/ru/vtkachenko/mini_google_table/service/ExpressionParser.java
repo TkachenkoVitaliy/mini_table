@@ -198,6 +198,8 @@ public class ExpressionParser {
                                 } else {
                                     throw new ExpressionException("Unexpected token: " + c);
                                 }
+                            } else {
+                                throw new ExpressionException("Unexpected token: " + c);
                             }
                         } else {
                             pos++;
